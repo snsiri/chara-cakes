@@ -1,0 +1,314 @@
+.product-grid {
+  padding: 20px;
+}
+
+.product-card {
+  transition: transform 0.2s;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.product-card h5 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.product-card p {
+  margin-bottom: 5px;
+  color: #34495e;
+}
+
+.product-card .btn {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  margin: 0 2px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.product-card .btn-primary {
+  background-color: #f69595;
+  border-color: #f69595;
+}
+
+.product-card .btn-primary:hover {
+  background-color: #f69595;
+  border-color: #f69595;
+  transform: translateY(-1px);
+}
+
+.product-card .btn-danger {
+  background-color: #e74c3c;
+  border-color: #e74c3c;
+}
+
+.product-card .btn-danger:hover {
+  background-color: #c0392b;
+  border-color: #c0392b;
+  transform: translateY(-1px);
+}
+
+/* Modal Styles */
+.update-modal {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.update-modal .modal-content {
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.update-modal .modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.update-modal .modal-title {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.update-modal .form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.update-modal .form-control {
+  border-radius: 6px;
+  padding: 0.8rem;
+  border: 1px solid #ced4da;
+  transition: all 0.2s;
+}
+
+.update-modal .form-control:focus {
+  border-color: #81b29a;
+  box-shadow: 0 0 0 0.2rem rgba(129, 178, 154, 0.25);
+}
+
+.update-modal .form-select {
+  border-radius: 6px;
+  padding: 0.8rem;
+  border: 1px solid #ced4da;
+}
+
+.update-modal .form-select:focus {
+  border-color: #5d5a5b;
+  box-shadow: 0 0 0 0.2rem rgba(129, 178, 154, 0.25);
+}
+
+.update-modal .btn-primary {
+  background-color: #f69595;
+  border-color: #f69595;
+  padding: 0.8rem 1.5rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.update-modal .btn-primary:hover {
+  background-color:#f86a6a;
+  border-color:#f69595;
+  transform: translateY(-1px);
+}
+
+.update-modal .form-check-label {
+  margin-left: 0.5rem;
+}
+
+.update-modal .form-check-input {
+  margin-left: -1.25rem;
+}
+
+.update-modal .custom-file-input {
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  padding: 0.8rem;
+  transition: all 0.2s;
+}
+
+.update-modal .custom-file-input:focus {
+  border-color: #81b29a;
+  box-shadow: 0 0 0 0.2rem rgba(129, 178, 154, 0.25);
+}
+
+.update-modal .ingredient-input-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: flex-start;
+}
+
+.update-modal .ingredient-input-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* Alert Styles */
+.alert {
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+/* Form Group Styles */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+/* Button Group Styles */
+.d-flex {
+  gap: 0.5rem;
+}
+
+/* Font Awesome Icons */
+.fas {
+  color: #2c3e50;
+  margin-right: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .update-modal {
+    max-width: 100%;
+  }
+}
+
+/* Modal Styles */
+.update-modal {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.update-modal .modal-content {
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.update-modal .modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.update-modal .modal-title {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.update-modal .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.update-modal .form-control {
+  border-radius: 6px;
+  padding: 0.8rem;
+  border: 1px solid #ced4da;
+}
+
+.update-modal .form-control:focus {
+  border-color: #81b29a;
+  box-shadow: 0 0 0 0.2rem rgba(129, 178, 154, 0.25);
+}
+
+.update-modal .btn-primary {
+  background-color:#f69595;
+  border-color: #f69595;
+  padding: 0.8rem 1.5rem;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+.update-modal .btn-primary:hover {
+  background-color: #f69595;
+  border-color: #f69595;
+}
+
+/* Alert Styles */
+.alert {
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+/* Form Grid Styles */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Ingredient Input Styles */
+.ingredient-input-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ingredient-input-group label {
+  margin-bottom: 0.5rem;
+}
+
+.ingredient-input-group input {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+}
+
+/* Image Upload Styles */
+.image-upload-group {
+  margin-bottom: 1.5rem;
+}
+
+.image-upload-group .form-check {
+  margin-bottom: 0.5rem;
+}
+
+.image-upload-group .form-control {
+  margin-top: 0.5rem;
+}

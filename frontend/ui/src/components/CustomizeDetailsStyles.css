@@ -1,0 +1,112 @@
+/* Container */
+.customize-list-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.header-section {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.header-section h2 {
+  font-size: 2rem;
+  color: #333;
+}
+
+/* List */
+.customize-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Each Item */
+.customize-item {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Item Header */
+.customize-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.customize-item-header h3 {
+  font-size: 1.3rem;
+  color: #444;
+}
+
+.customize-item-meta span {
+  margin-left: 10px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Details */
+.customize-item-details {
+  margin-top: 15px;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.detail-label {
+  width: 120px;
+  font-weight: bold;
+  color: #555;
+}
+
+.detail-value {
+  flex: 1;
+  color: #333;
+}
+
+.detail-value ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+/* Action Button */
+.customize-item-actions {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.view-button {
+  background-color: #df7878;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+}
+
+.view-button:hover {
+  background-color: #e3a7a7;
+  
+}
+
+/* Loading & Error */
+.loading,
+.error {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 1.1rem;
+  color: #999;
+}

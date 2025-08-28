@@ -1,0 +1,78 @@
+.discounted-products-container {
+  padding: 2rem;
+}
+
+.discounted-products-table {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.discounted-products-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #495057;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  padding: 1rem;
+}
+
+.discounted-products-table td {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+.discounted-products-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.discounted-products-actions button {
+  padding: 0.5rem 1rem;
+}
+
+.discounted-products-actions .btn-success {
+  background-color: #272727;
+  border-color: #151515;
+}
+
+.discounted-products-actions .btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.discounted-products-actions .btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.discounted-products-actions .btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.discounted-products-alert {
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.discounted-products-alert h4 {
+  margin-bottom: 0.5rem;
+}
+
+.discounted-products-empty {
+  text-align: center;
+  padding: 3rem;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+}
+
+.discounted-products-empty h3 {
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.discounted-products-empty p {
+  color: #6c757d;
+}

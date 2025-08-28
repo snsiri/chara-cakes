@@ -1,0 +1,78 @@
+.customize-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 30px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header-section h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.pdf-button {
+  background-color: #d9534f;
+  color: white;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pdf-button i {
+  margin-right: 6px;
+}
+
+.details-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.detail-row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.detail-label {
+  font-weight: bold;
+  width: 150px;
+  color: #555;
+}
+
+.detail-value {
+  flex: 1;
+  color: #333;
+}
+
+ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.loading,
+.error {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 18px;
+  color: #d9534f;
+}
+
+/* Hide in PDF */
+.no-print {
+  display: none !important;
+}

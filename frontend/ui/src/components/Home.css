@@ -1,0 +1,372 @@
+.home {
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 10px;
+  font-family: 'Quicksand', cursive;
+  background: transparent;
+ 
+  
+  gap: 20px;
+  
+}
+.hero-slider {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full screen height */
+
+}
+
+.hero-slider-track {
+  
+  display: flex;
+  transition: transform 1s ease-in-out;
+  width: 100%;
+}
+
+.hero-content {
+  flex: 0 0 100%; /* Each slide takes full width */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5rem;
+  height: 100vh;
+  background-color: transparent; /* Optional fallback */
+}
+
+
+.hero-text h1 {
+  max-width: 100%;
+  font-size: 7rem;
+}
+.hero-text {
+  max-width: 50%;
+  background-color: transparent;
+  font-family: 'Quicksand', cursive;
+}
+.hero-text p {
+  font-size: 3rem;
+  margin-top: 2rem;
+}
+.fancy-text {
+  
+  font-weight: bold;
+}
+
+.fancy-text1 {
+  
+  margin-bottom: 1rem;
+}
+
+.order-button {
+  background: #e91e63;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #e91e63;
+}
+
+
+.order-button {
+  display: inline-block;
+  padding: 15px 40px;
+  background-color: #FF69B4;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.order-button:hover {
+  transform: translateY(-3px);
+  background-color: #FF1493;
+}
+.fancy-text{
+  font-family: 'Mr Dafoe', cursive;
+  font-size: 56px;
+}
+
+.fancy-text1{
+  font-family: 'Ms Madi', cursive;
+  font-size: 56px;
+}
+/* Cakes Sections */
+/* .cakes-section {
+  padding: 2rem;
+  background: #fff;
+  font-family: Arial, sans-serif;
+} */
+
+.cakes-header {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.cakes-header h2 {
+  font-size: 2rem;
+  color: #efc7c7;
+}
+
+.view-all {
+  color: #c28857;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+.cakes-carousel {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+/* .cake-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  width: 350px;
+  flex-shrink: 0;
+  position: relative;
+  text-align: center;
+} */
+
+/* .cake-card img {
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+} */
+
+
+
+/* .cake-card h3 {
+  margin: 1rem 0 0.5rem;
+  font-size: 1rem;
+  transition: transform 0.3s;
+} */
+
+.price {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.cake-button {
+  background-color: #d89d63;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.cake-button:hover {
+  background-color: #c28857;
+  transform: translateY(-5px);
+}
+
+.cakes-section {
+  padding: 40px 0;
+}
+
+.cakes-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.cakes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.cake-card1 {
+  position: relative;
+  display: block;
+  height: 100%;
+  max-width: 92%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  margin-right: 100px;
+  background: transparent;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s  ease;
+}
+
+.slick-slide:last-child .cake-card1 {
+  margin-right: 0;
+}
+
+.cake-card1:hover {
+  transform: scale(1.02);
+  bottom:0;
+}
+
+
+.cake-card1 img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.cake-card1 p {
+  margin: 0.5rem 0 0.5rem;
+  font-size: 1.0rem;
+  padding-bottom: 565px;
+  text-align: center;
+  color: #dacece;
+  
+}
+
+.cake-card1 h3 {
+  margin: 0.5rem 0 0.1rem;
+  font-size: 1.2rem;
+  padding: 1px;
+  padding-bottom: 0.02px;
+  text-align: center;
+  color: #f6c1c1;
+  
+}
+
+.cake-card1:hover .cake-info1 {
+  opacity: 1;
+}
+
+/* Customize Section */
+.customize-section {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.customize-button {
+  display: inline-block;
+  padding: 1px 40px;
+  background-color: #d57793;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  text-align: center;
+}
+
+.customize-button:hover {
+  transform: translateY(-px);
+  background-color: #b36b84;
+  color: white;
+  text-decoration: none;
+}
+
+.cake-info1 {
+  position: absolute;
+  bottom: -190%;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6); /* soft pink with transparency */
+  color: #333;
+  padding: 3px;
+  text-align: center;
+  opacity: 0;
+  transition: bottom 0.9s ease, opacity 0.4s ease;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 0 0 12px 12px;
+}
+
+
+
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .hero-text h1 {
+   
+    font-size: 3rem;
+  }
+  
+  .hero-image img {
+    max-width: 550px;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero {
+    padding: 60px 0;
+    min-height: 500px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-text p {
+    font-size: 1.3rem;
+  }
+
+  .hero-image img {
+    max-width: 450px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    gap: 30px;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1.2rem;
+  }
+
+  .hero-image img {
+    max-width: 100%;
+  }
+
+  .order-button {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+  }
+} 
