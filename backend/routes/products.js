@@ -1,14 +1,12 @@
-const express = require("express");
+import express from 'express';
 const router = express.Router();
-const Product = require("../models/Product");
-const Ingredient = require("../models/Ingredient2");
-const Discontinued_product = require("../models/discontinued_product");
-const getNextSequenceValue = require("../utils/sequence");
-const getSequenceValue = require("../utils/sequence");
-const prefix="OGC-";
-const multer = require("multer");
-const path = require("path");
-
+import Product from '../models/Product.js';
+import Ingredient from '../models/IngredientStock.js';
+import Discontinued_product from '../models/discontinued_product.js';
+import getNextSequenceValue from '../utils/sequence.js';
+const prefix = "OGC-";
+import multer from 'multer';
+import path from 'path';
 
 
 
@@ -326,4 +324,4 @@ router.get('/occasion', async (req, res) => {
 //   }
 // });
 
-module.exports = router;
+export default router;

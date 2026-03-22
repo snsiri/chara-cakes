@@ -1,8 +1,9 @@
-const express = require("express");
+
+import express from 'express';
 const router = express.Router();
-const Discontinued_product =require("../models/discontinued_product");
-const Product =require("../models/Product");
-const Ingredient = require("../models/Ingredient2");
+import Discontinued_product from '../models/discontinued_product.js';
+import Product from '../models/Product.js';
+import Ingredient from '../models/IngredientStock.js';
 
 http://localhost:3000/api/discontinued_product/restore/vfdrdhgu
 
@@ -98,4 +99,4 @@ router.route("/get/:product_id").get(async (req, res)=>{
 })   
 
 
-module.exports = router;
+export default router;

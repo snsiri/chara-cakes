@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import { type } from 'os';
 
 const Schema = mongoose.Schema;
 
@@ -7,10 +8,9 @@ const orderSchema = new Schema({
     _id: { 
         type: String,
     }, 
-    customer: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: false,
-        ref: 'Customers',
+    customer_id: {
+        type: String,
+        required: true
     },
     product:[{
         _id: String,
@@ -121,6 +121,6 @@ const orderSchema = new Schema({
 }
 ); 
 
+const Order = mongoose.model('Order', orderSchema);
 
-
-module.exports = order = mongoose.model('Order', orderSchema);
+export default Order;

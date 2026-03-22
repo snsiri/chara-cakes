@@ -3,6 +3,7 @@ import axios from "axios";
 import './ProductManagerPage.css';
 import { Link } from 'react-router-dom';
 import { Form, Button, Container, Row, Col, Alert, Table } from 'react-bootstrap';
+import AdminSidebar from "./AdminSidebar";
 
 const OCCASION_OPTIONS = [
   "Birthday", "Wedding", "Anniversary", "Graduation", "Baby Shower", "Christmas", "Valentine's Day"
@@ -183,6 +184,8 @@ const handleIngredientQuantityChange = (index, value) => {
   };
 
   return (
+    <div className="body">
+      <AdminSidebar />
     <div className="container mx-auto px-4 py-6">
       <h2 className="text-2xl font-bold text-center mb-6">Product Management</h2>
       
@@ -488,6 +491,8 @@ const handleIngredientQuantityChange = (index, value) => {
         </div>
       )}
     </div>
+    </div>
+
   );
 }
 

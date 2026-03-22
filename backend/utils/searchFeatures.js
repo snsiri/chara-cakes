@@ -48,4 +48,4 @@ class SearchFeatures {
     }
 };
 
-module.exports = SearchFeatures;
+export default SearchFeatures;

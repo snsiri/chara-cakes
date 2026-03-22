@@ -4,6 +4,7 @@ import './Home.css';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Footer from './Footer';
 
 
 const slides = [
@@ -44,7 +45,7 @@ const sliderSettings = {
 };
 
 
-const Home = () => {
+const Home = ({customer, error:propError}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
   const [productsByOccasion, setProductsByOccasion] = useState({});
@@ -90,7 +91,9 @@ if (loading) {
 
 
   return (
+    
     <div className="home">
+      
       <section className="hero" 
       style={{
     backgroundImage: `url(${slides[currentSlide].image})`,
@@ -99,6 +102,10 @@ if (loading) {
     backgroundRepeat: 'no-repeat',
   }}
   >
+    {error && <p className= "error-message">{error}</p>}
+    {customer? (
+      <div></div>):(<div></div>)
+    }
   <div className="hero-slider">
     <div
       className="hero-slider-track"
@@ -166,8 +173,11 @@ if (loading) {
       <section className="customize-section">
         <Link to="/customizes" className="customize-button">Customize Your Cake</Link>
       </section>
+       <Footer />
     </div>
+ 
   );
+    
 };
 
 export default Home;

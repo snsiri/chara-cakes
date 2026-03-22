@@ -1,10 +1,10 @@
-const express = require('express');
+
+import express from 'express';
 const router = express.Router();
-const Option = require('../models/Option');
-const Ingredient = require('../models/Ingredient2');
-const getNextSequenceValue = require("../utils/sequence");
-const getSequenceValue = require("../utils/sequence");
-const prefix="OPT-";
+import Option from '../models/Option.js';
+import Ingredient from '../models/IngredientStock.js';
+import getNextSequenceValue from '../utils/sequence.js';
+const prefix = "OPT-";
 
 // Helper function to validate ingredients
 const validateIngredients = (ingredients) => {
@@ -55,7 +55,7 @@ router.post('/add', async (req, res) => {
       });
     }
 
-    // Validate ingredients and check if they exist in ingredient2
+    // Validate ingredients and check if they exist in ingredientstock
     if (!validateIngredients(ingredients)) {
       return res.status(400).json({
         status: 'Error',
@@ -63,7 +63,7 @@ router.post('/add', async (req, res) => {
       });
     }
 
-    // Verify all ingredients exist in ingredient2
+    // Verify all ingredients exist in ingredientstock
     for (const ingredient of ingredients) {
       const existingIngredient = await Ingredient.findById(ingredient._id);
       if (!existingIngredient) {
@@ -225,7 +225,7 @@ router.put('/update/:option_id', async (req, res) => {
         });
       }
 
-      // Verify all ingredients exist in ingredient2
+      // Verify all ingredients exist in ingredientstock
       for (const ingredient of ingredients) {
         const existingIngredient = await Ingredient.findById(ingredient._id);
         if (!existingIngredient) {
@@ -332,4 +332,4 @@ router.delete('/delete/:option_id', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

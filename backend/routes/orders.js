@@ -1,19 +1,24 @@
-const express = require("express");
+import express from 'express';
 const router = express.Router();
-const Order = require("../models/Order");
-const getNextSequenceValue = require("../utils/sequence");
+import Order from '../models/Order.js';
+import getNextSequenceValues from '../utils/sequences.js';
+import Product from '../models/Product.js';
+import Cart from '../models/Cart.js';
+import Customize from '../models/Customize.js';
 const prefix = "ORD-";
-const Product = require("../models/Product");
-const Cart = require('../models/Cart');
-const Customize = require('../models/Customize');
+import ProductModel from '../models/Product.js';
+import CustomizeModel from '../models/Customize.js';
+import { Protect } from '../middleware/authCustomer.js';
+import { adminOnly} from "../middleware/authorization.js";
+import Completed_order from '../models/Completed_order.js';
+
 
 // Get all orders
-router.get('/get', async (req, res) => {
+router.get('/get',   async (req, res) => {
   try {
     const orders = await Order.find()
       .sort({ createdAt: -1 })
-      .populate('product._id')
-      .populate('customize._id');
+      
     res.json(orders);
   } catch (err) {
     console.error('Error fetching orders:', err);
@@ -24,7 +29,8 @@ router.get('/get', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+// Update an order
+router.put('/:id', Protect, async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
     if (!order) {
@@ -64,6 +70,7 @@ router.put('/:id', async (req, res) => {
     });
   }
 });
+// Update delivery status
 router.put('/:id/deliver', async (req, res) => {
     try {
       const order = await Order.findById(req.params.id);
@@ -91,25 +98,30 @@ router.put('/:id/deliver', async (req, res) => {
       });
     }
   });
-router.post('/add', async (req, res) => {
+
+//add an order
+router.post('/add', Protect, async (req, res) => {
   // Add delivery status update route
   
   try {
-    const { customer_id, selectedProducts = [], selectedCustomizes = [], ...rest } = req.body;
-    const cart = await Cart.findById('main');
+    const customerId = req.customer._id;
+    const { selectedProducts = [], selectedCustomizes = [], ...rest } = req.body;
+
+    const cart = await Cart.findOne({customer_id:customerId});
     if (!cart) return res.status(400).json({ error: "Cart not found" });
 
     // Filter selected products and customizes from the cart
-    const productsToOrder = cart.product.filter(p => selectedProducts.includes(p._id));
-    const customizesToOrder = cart.customize.filter(c => selectedCustomizes.includes(c._id));
+    const productsToOrder = cart.product.filter(p => selectedProducts.includes(p._id.toString()));
+    const customizesToOrder = cart.customize.filter(c => selectedCustomizes.includes(c._id.toString()));
 
     if (productsToOrder.length === 0 && customizesToOrder.length === 0) {
       return res.status(400).json({ error: "No items selected for checkout" });
     }
 
     // --- Gather all ingredients ---
-    const ProductModel = require('../models/Product');
-    const CustomizeModel = require('../models/Customize');
+    // const ProductModel = require('../models/Product');
+    // const CustomizeModel = require('../models/Customize');
+    
     let allIngredients = [];
 
     // Get ingredients from products
@@ -157,13 +169,13 @@ router.post('/add', async (req, res) => {
     const ingredientsArray = Object.values(mergedIngredients);
 
     // --- Create the order ---
-    const newId = await getNextSequenceValue(prefix, "orderid");
+    const newId = await getNextSequenceValues(prefix, "orderid");
     const newOrder = new Order({
       _id: newId,
-      customer_id,
+      customer_id: customerId,
       product: productsToOrder,
       customize: customizesToOrder,
-      ingredients: ingredientsArray,
+      total_ingredients: ingredientsArray,
       ...rest,
       createdAt: new Date()
     });
@@ -184,64 +196,12 @@ router.post('/add', async (req, res) => {
   }
 });
 
-// Add product to cart
-router.post('/add-product', async (req, res) => {
-  try {
-    const { product_id, quantity = 1 } = req.body;
-    const product = await Product.findById(product_id);
-    if (!product) return res.status(404).json({ status: 'Error', message: 'Product not found' });
-    const cart = await getOrCreateCart();
-    const idx = cart.product.findIndex(p => p._id === product_id);
-    if (idx !== -1) {
-      cart.product[idx].quantity += quantity;
-    } else {
-      cart.product.push({
-        _id: product._id,
-        product_name: product.product_name,
-        product_price: product.product_price,
-        product_image: product.product_image,
-        ingredients: product.ingredients,
-        quantity,
-        added_date: new Date()
-      });
-    }
-    await cart.save();
-    res.json({ status: 'Success', data: cart });
-  } catch (error) {
-    console.error('Error adding product to cart:', error);
-    res.status(500).json({ status: 'Error', message: error.message });
-  }
-});
 
-router.post('/add-customize', async (req, res) => {
-  try {
-    const { customize_id, quantity = 1 } = req.body;
-    const customize = await Customize.findById(customize_id);
-    if (!customize) return res.status(404).json({ status: 'Error', message: 'Customize item not found' });
-    const cart = await getOrCreateCart();
-    const idx = cart.customize.findIndex(c => c._id === customize_id);
-    if (idx !== -1) {
-      cart.customize[idx].quantity += quantity;
-    } else {
-      cart.customize.push({
-        _id: customize._id,
-        custom_price: customize.custom_price,
-        custom_ingredients: customize.custom_ingredients,
-        quantity,
-        added_date: new Date()
-      });
-    }
-    await cart.save();
-    res.json({ status: 'Success', data: cart });
-  } catch (error) {
-    console.error('Error adding customization to cart:', error);
-    res.status(500).json({ status: 'Error', message: error.message });
-  }
-});
 
+//add to completed orders
 http://localhost:4000/api/order/completed/crntpdct
 
-router.route("/completed/:order_id").delete(async (req, res) => {
+router.route("/completed/:order_id").delete( async (req, res) => {
     try {
         const _id = req.params.order_id;
 
@@ -252,10 +212,10 @@ router.route("/completed/:order_id").delete(async (req, res) => {
 
         const completed_order = new Completed_order({
             _id: completed._id,
-        
-            //customer_id:completed._id,
-            products:completed.products,
-            customize:completed.customize,
+            customer_id:completed.customer_id,
+            product:completed.product  || [],
+            customize:completed.customize || [],
+            total_ingredients:completed.total_ingredients || [],
             deliveryAddress:completed.deliveryAddress,
             paymentMethod:completed.paymentMethod,
             itemsPrice:completed.itemsPrice,
@@ -277,4 +237,22 @@ router.route("/completed/:order_id").delete(async (req, res) => {
     }
 });
 
-module.exports = router;
+//get all orders of a customer
+router.get('/my-orders', Protect, async (req, res) => {
+  try {
+    const customer_id = req.customer._id;
+
+    const orders = await Order.find({ customer_id })
+      .sort({ createdAt: -1 });
+
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({
+      message: 'Failed to fetch customer orders',
+      error: error.message
+    });
+  }
+});
+
+
+export default router;

@@ -1,11 +1,10 @@
-// 
-const express = require('express');
+
+import express from 'express';
 const router = express.Router();
-const Customize = require('../models/Customize');
-const Option = require('../models/Option');
-const Ingredient2 = require('../models/Ingredient2');
-const getNextSequenceValue = require("../utils/sequence");
-const getSequenceValue = require("../utils/sequence");
+import Customize from '../models/Customize.js';
+import Option from '../models/Option.js';
+import IngredientStock from '../models/IngredientStock.js';
+import getNextSequenceValue from '../utils/sequence.js';
 const prefix = "CSM-";
 
 // Get all customizes
@@ -302,4 +301,4 @@ router.delete('/delete/:id', async (req, res) => {
 });
 
 
-module.exports = router; 
+export default router;

@@ -54,7 +54,7 @@ const CustomizeDetails = () => {
               <h3>{customize.custom_size} {customize.custom_shape} Cake</h3>
               <div className="customize-item-meta">
                 <span>Layers: {customize.custom_layers}</span>
-                <span>Price: ${customize.custom_price}</span>
+                <span>Price: Rs.{customize.custom_price}</span>
               </div>
             </div>
             <div className="customize-item-details">

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
@@ -47,5 +47,6 @@ const discontinued_productSchema = new Schema({
 
 })
 
+const Discontinued_Product = mongoose.model('Discontinued_Product', discontinued_productSchema);
 
-module.exports = Discontinued_product = mongoose.model('Discontinued_product', discontinued_productSchema);;
+export default Discontinued_Product;

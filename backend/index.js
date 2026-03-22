@@ -1,51 +1,72 @@
-const express = require('express');
-const cors = require('cors');
-const app = express();
-const mongoose = require('mongoose');
-const { createProxyMiddleware } = require("http-proxy-middleware");
-app.use(express.json());
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import dbConnection from './config/db.js'
+import bodyParser from 'body-parser';
+import createProxyMiddleware from 'http-proxy-middleware';
 
+const app = express();
+
+// Load environment variables
+dotenv.config();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173', // Your React app's URL from the error
+  credentials: true,               // Allows cookies/headers to be sent
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
-// Routes
-const productsRouter = require('./routes/products');
-const ordersRouter = require('./routes/orders');
-const discontinuedProductsRouter = require('./routes/discontinued_products');
-const completedOrdersRouter = require('./routes/completed_orders');
-const customizesRouter = require('./routes/customizes');
-const ingredientRouter = require('./routes/ingredients');
-const optionsRouter = require('./routes/options');
-const cartRouter = require('./routes/cart');
-const dbConnection = require('./config/db');
+//Import Routes
+import productRoutes from './routes/products.js';
+import orderRoutes from './routes/orders.js';
+import ingredientRoutes from './routes/ingredientsStock.js';
+import customizeRoutes from './routes/customizes.js';
+import optionRoutes from './routes/options.js';
+import cartRoutes from './routes/cart.js';
+import discontinuedProductRoutes from './routes/discontinued_products.js';
+import completedOrderRoutes from './routes/completed_orders.js';
+import authCustomerRoutes from './routes/authCustomer.js';
+import authStaff from './routes/authStaff.js'
+import staff from './routes/staff.js'
+import role from './models/role.js';
+import feedback from './routes/feedback.js';
 
-app.use('/api/product', productsRouter);
-app.use('/api/orders', ordersRouter);
-app.use('/api/discontinued_product', discontinuedProductsRouter);
-app.use('/api/completed_order', completedOrdersRouter);
-app.use('/api/customizes', customizesRouter);
-app.use('/api/ingredients', ingredientRouter);
-app.use('/api/options', optionsRouter);
-app.use('/api/cart', cartRouter);
+
+//Routes
+app.use('/api/product', productRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/discontinued_product', discontinuedProductRoutes);
+app.use('/api/completed_order', completedOrderRoutes);
+app.use('/api/customizes',  customizeRoutes);
+app.use('/api/ingredients',  ingredientRoutes); 
+app.use('/api/options',   optionRoutes);
+app.use('/api/cart',  cartRoutes);
 app.use('/uploads', express.static('uploads'));
+app.use('/api/auth/customer',  authCustomerRoutes);
+app.use('/api/auth/staff',  authStaff);
+app.use('/api/staff',  staff);
+app.use('/api/role',  role);
+app.use('/api/feedback', feedback);
 
 // Database connection
 dbConnection();
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/order_management';
+//  const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/order_management';
 
-mongoose.connect(MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error('MongoDB connection error:', err));
+// mongoose.connect(MONGODB_URI)
+//   .then(() => console.log('Connected to MongoDB'))
+//   .catch((err) => console.error('MongoDB connection error:', err));
 
-
-  const PORT = process.env.PORT || 3000;
+//Start the server
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-// Test route
+//Test route
 app.get('/', (req, res) => {
     res.send('Hello, World!');
 });
@@ -62,4 +83,3 @@ app.use((err, req, res, next) => {
 //     console.log("API Gateway running on port 3000");
 // });
 
-module.exports = app;

@@ -1,14 +1,14 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const customizeSchema = new mongoose.Schema({
   _id: {
     type: String,
     required: true
   },
-  /*customer_Id:{
+  customer_Id:{
     type:String,
     required:false
-  },*/
+  },
   custom_layers: {
     type: Number,
     required: true,
@@ -85,4 +85,6 @@ const customizeSchema = new mongoose.Schema({
   
 });
 
-module.exports = mongoose.model('Customize', customizeSchema);
+const Customize = mongoose.model('Customize', customizeSchema);
+
+export default Customize;

@@ -5,8 +5,10 @@
 }
 
 .main-content {
-  flex: 1;
-  padding: 20px 0;
+  display: flex;
+  flex-wrap: nowrap;
+  /* height/max-height removed or changed to min-height if you need it */
+  overflow-x: auto;
+  overflow-y: auto;        /* allow vertical scrolling */
+  /* …or simply delete the overflow rules completely */
 }
-
-

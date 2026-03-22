@@ -1,7 +1,11 @@
-const express = require("express");
+// const express = require("express");
+// const router = express.Router();
+// const Completed_order =require("../models/completed_order");
+// const order =require("../models/Order");
+import express from 'express';
 const router = express.Router();
-const Completed_order =require("../models/completed_order");
-const order =require("../models/Order");
+import Completed_order from '../models/Completed_order.js';
+import Order from '../models/Order.js';
 
 http://localhost:3000/api/completed_order
 
@@ -49,4 +53,4 @@ router.route("/get/:completed_order_id").get(async (req, res) => {
 })
 
 
-module.exports = router;
+export default router;

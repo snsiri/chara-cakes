@@ -43,10 +43,31 @@ import { useNavigate } from 'react-router-dom';
 
 const Cake_cards = ({ product }) => {
   const navigate = useNavigate();
+  const [adding, setAdding] = React.useState(false);
 
   const handleClick = () => {
     navigate(`/cakes/${product._id}`);
   };
+
+  const addToWishlist = async (e) => {
+    // stop card click
+    e.stopPropagation();
+    if (adding) return;
+    setAdding(true);
+    try {
+      // adjust endpoint as needed
+      await axios.post("http://localhost:3000/api/wishlist/add", {
+        productId: product._id,
+      });
+      alert("Added to wishlist");
+    } catch (err) {
+      console.error(err);
+      alert("Could not add to wishlist");
+    } finally {
+      setAdding(false);
+    }
+  };
+
   return (
     <div className="cake-card" onClick={handleClick}>
       {product.product_image ? (
@@ -58,10 +79,19 @@ const Cake_cards = ({ product }) => {
       ) : (
         <div className="no-image">No Image Available</div>
       )}
+
+      <button
+        className="wishlist-btn"
+        onClick={addToWishlist}
+        disabled={adding}
+      >
+        {adding ? "Adding..." : "♥"}
+      </button>
+
       <div className="cake-info">
-    <h3>{product.product_name}</h3>
-    <p>Rs.{product.product_price}</p>
-  </div>
+        <h3>{product.product_name}</h3>
+        <p>Rs.{product.product_price}</p>
+      </div>
     </div>
   );
 };

@@ -171,6 +171,157 @@
   background: #fd6c6c;
 }
 
+/* --- Review Section Container --- */
+.reviews-section {
+  margin-top: 50px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.reviews-section h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #f97b7b; /* Themed underline */
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* --- Feedback List Items --- */
+.feedback-item {
+  padding: 20px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.feedback-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 8px;
+}
+
+.customer-name {
+  font-weight: 600;
+  color: #666565;
+}
+
+.date {
+  font-size: 13px;
+  color: #999;
+}
+
+/* --- Write Review Form (Themed) --- */
+.add-review-container {
+  margin-top: 40px;
+  background: #fff8f8; 
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px dashed #f97b7b;
+  display: flex;
+ 
+}
+.review-form {
+  
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border: none;
+  flex: 1;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.review-form h3 {
+  color: #f97b7b;
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.review-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 15px;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+.review-form textarea:focus {
+  outline: none;
+  border-color: #f97b7b;
+  box-shadow: 0 0 5px rgba(249, 123, 123, 0.2);
+}
+
+/* --- Themed Submit Button --- */
+.submit-review-btn {
+  background: #f97b7b;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+  margin-top: 15px;
+}
+
+.submit-review-btn:hover {
+  background: #f96868;
+  transform: translateY(-2px);
+}
+
+.star-rating {
+  font-size: 28px;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-reverse;   
+  gap: 5px;
+
+}
+.stars {
+  color: #ffc107;
+  margin-right: 6px;
+  transition: color 0.2s;
+}
+
+.star {
+  color: #ccc;
+  margin-right: 6px;
+  transition: color 0.2s ease; 
+  font-size: 30px;
+
+}
+
+.star.active {
+  color: #ffc107; /* gold */
+  background-color: transparent;
+}
+
+.star:hover,
+.star:hover ~ .star {
+  color: #ffc107; /* gold */
+  background-color: transparent;
+}
+
+
+/* --- Eligibility Notice--- */
+.eligibility-notice {
+  background: #f9f9f9;
+  color: #888;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+
+
+
 /* Responsive Design */
 @media (max-width: 992px) {
   .cake-details-content {

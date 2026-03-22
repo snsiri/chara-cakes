@@ -1,12 +1,6 @@
-const { MongoClient } = require("mongodb");
-const Counter = require("../models/Counter");
-
-const uri = "mongodb://localhost:27017";
-const client = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
-
+// backend/utils/sequence.js
+import Counter from '../models/Counter.js';
+// id with prefix e.g., OPT-0001 (4 numbers)
 async function getNextSequenceValue(prefix, sequenceName) {
     try {
       
@@ -33,4 +27,6 @@ async function getNextSequenceValue(prefix, sequenceName) {
     }
 }
 
-module.exports = getNextSequenceValue;
+
+
+export default getNextSequenceValue;
