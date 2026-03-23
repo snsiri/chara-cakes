@@ -5,6 +5,11 @@ import getNextSequenceValue from '../utils/sequence.js';
 const prefix = "ROLE-";
 import multer from 'multer';
 import path from 'path';
+import { Protect } from '../middleware/authStaff.js';
+import { adminOnly, firstLvlAdmin ,attachStaffRole} from "../middleware/authorization.js";
+
+
+
 
 
 //Add role
@@ -88,7 +93,7 @@ router.put("/:id",Protect,attachStaffRole,firstLvlAdmin,async (req, res) => {
 
 
 //get role
-router.get("/",Protect,attachStaffRole,adminOnly,async (req, res) => {
+router.get("/roles",async (req, res) => {
     try {
       const roles = await Role.find();
       res.json(roles);

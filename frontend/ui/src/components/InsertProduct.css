@@ -1,76 +1,120 @@
-/*body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}*/
+/* =====================================================
+   InsertProduct.css
+   ALL rules scoped to .insert-product-page so they
+   do NOT bleed onto Login, Home, Profile, etc.
+===================================================== */
 
-form {
-    
-    background-color: white;
-    padding: 20px;
-    border: 1px solid #201c1c;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 600px;
-    margin-left: 450px;
-    margin-right: 450px;
-    align-items: center;
-    justify-content: center;
-    top: 50%;       
-    left: 50%; 
-    right: 50%;
-    bottom: 50%;       
-    
+.insert-product-page {
+  font-family: 'Quicksand', Arial, sans-serif;
+  max-width: 860px;
+  margin: 40px auto;
+  padding: 0 24px 60px;
 }
 
-h2 {
-    text-align: center;
-    color: #333;
+.insert-product-page h2 {
+  text-align: center;
+  color: #5a2a2a;
+  font-size: 1.8rem;
+  margin-bottom: 28px;
 }
 
-.form-group {
-    margin-bottom: 15px;
+.insert-product-page .insert-product-form {
+  background-color: white;
+  padding: 32px 36px;
+  border: 1px solid #f5d0d0;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(180, 60, 60, 0.07);
 }
 
-label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
+.insert-product-page .form-group {
+  margin-bottom: 18px;
 }
 
-input, textarea, select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: all 0.3s ease-in-out;
+.insert-product-page label {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 6px;
+  color: #8c4f4f;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
-input:focus, textarea:focus, select:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-    outline: none;
+.insert-product-page input,
+.insert-product-page textarea,
+.insert-product-page select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #f5d0d0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #5a2a2a;
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
 }
 
-button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 12px;
-    width: 100%;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background 0.3s ease-in-out;
+.insert-product-page input:focus,
+.insert-product-page textarea:focus,
+.insert-product-page select:focus {
+  border-color: #f97b7b;
+  box-shadow: 0 0 0 3px rgba(249, 123, 123, 0.12);
 }
 
-button:hover {
-    background: #0056b3;
+.insert-product-page button[type="submit"],
+.insert-product-page .submit-btn {
+  background: linear-gradient(135deg, #f97b7b, #e05050);
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  width: auto;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-family: inherit;
+  font-weight: 700;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-top: 8px;
 }
 
+.insert-product-page button[type="submit"]:hover,
+.insert-product-page .submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(249, 123, 123, 0.35);
+}
+
+.insert-product-page .ingredient-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.insert-product-page .hint {
+  font-size: 0.75rem;
+  color: #c08080;
+  font-style: italic;
+  margin-left: 4px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+.insert-product-page .success-msg {
+  color: #0f5132;
+  background: #d1e7dd;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-top: 14px;
+  font-weight: 600;
+}
+
+.insert-product-page .error-msg {
+  color: #842029;
+  background: #f8d7da;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-top: 14px;
+  font-weight: 600;
+}

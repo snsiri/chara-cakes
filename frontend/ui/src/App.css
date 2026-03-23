@@ -1,4 +1,4 @@
-.app-container {
+/* .app-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -6,9 +6,25 @@
 
 .main-content {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap; */
   /* height/max-height removed or changed to min-height if you need it */
-  overflow-x: auto;
-  overflow-y: auto;        /* allow vertical scrolling */
+  /* overflow-x: auto;
+  overflow-y: auto;        */
+   /* allow vertical scrolling */
   /* …or simply delete the overflow rules completely */
+/* } */
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* CRITICAL: do NOT use flex here — it squashes child pages */
+.main-content {
+  flex: 1;
+  display: block;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

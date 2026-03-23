@@ -21,23 +21,16 @@ const InsertProduct = () => {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
-  // Load ingredients on mount
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/ingredients/")
+    axios.get("http://localhost:3000/api/ingredients/")
       .then((response) => {
-        const loadedIngredients = response.data.map((item) => ({
-          _id: item._id,
-          name: item.name,
-          unit: item.unit,
-          quantity: 0,
+        const loaded = response.data.map((item) => ({
+          _id: item._id, name: item.name, unit: item.unit, quantity: 0,
         }));
-        setIngredients(loadedIngredients);
-        setInitialIngredients(loadedIngredients); // Save for reset
+        setIngredients(loaded);
+        setInitialIngredients(loaded);
       })
-      .catch(() => {
-        setError("Failed to load ingredients.");
-      });
+      .catch(() => setError("Failed to load ingredients."));
   }, []);
 
   const handleIngredientChange = (index, value) => {
@@ -51,9 +44,7 @@ const InsertProduct = () => {
     setProductData({ ...productData, [name]: value });
   };
 
-  const handleFileChange = (e) => {
-    setProductImage(e.target.files[0]);
-  };
+  const handleFileChange = (e) => setProductImage(e.target.files[0]);
 
   const handleSourceChange = (e) => {
     setProductData({ ...productData, imageSource: e.target.value, product_image_url: "" });
@@ -62,9 +53,7 @@ const InsertProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSuccess("");
-    setError("");
-
+    setSuccess(""); setError("");
     const formData = new FormData();
     formData.append("product_name", productData.product_name);
     formData.append("product_weight", productData.product_weight);
@@ -74,250 +63,105 @@ const InsertProduct = () => {
     formData.append("occasion", productData.occasion);
     formData.append("specifications", productData.specifications);
     formData.append("ingredients", JSON.stringify(ingredients));
-
     if (productData.imageSource === "upload" && productImage) {
       formData.append("product_image", productImage);
     } else if (productData.imageSource === "url" && productData.product_image_url) {
       formData.append("product_image_url", productData.product_image_url);
     }
-
-    axios
-      .post("http://localhost:3000/api/product/add", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+    axios.post("http://localhost:3000/api/product/add", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    })
       .then(() => {
         setSuccess("Product added successfully!");
-        setProductData({
-          product_name: "",
-          product_weight: "",
-          product_description: "",
-          product_price: "",
-          flavor: "",
-          occasion: "",
-          specifications: "",
-          imageSource: "upload",
-          product_image_url: "",
-        });
+        setProductData({ product_name:"",product_weight:"",product_description:"",product_price:"",flavor:"",occasion:"",specifications:"",imageSource:"upload",product_image_url:"" });
         setProductImage(null);
-        setIngredients(initialIngredients.map(i => ({ ...i, quantity: 0 }))); // reset to initial
+        setIngredients(initialIngredients.map(i => ({ ...i, quantity: 0 })));
       })
-      .catch(() => {
-        setError("Failed to add product. Please check your input.");
-      });
+      .catch(() => setError("Failed to add product. Please check your input."));
   };
-  const OCCASION_OPTIONS = [
-    "Birthday",
-    "Wedding",
-    "Anniversary",
-    "Graduation",
-    "Baby Shower",
-    "Christmas",
-    "Valentine's Day"
-  ];
-  
-  const SPECIFICATION_OPTIONS = [
-    "Eggless",
-    "Sugar-free",
-    "Gluten-free",
-    "Vegan",
-    "Nut-free",
-    "Low-calorie"
-  ];
+
+  const OCCASION_OPTIONS = ["Birthday","Wedding","Anniversary","Graduation","Baby Shower","Christmas","Valentine's Day"];
+  const SPECIFICATION_OPTIONS = ["Eggless","Sugar-free","Gluten-free","Vegan","Nut-free","Low-calorie"];
+
   return (
-    <div className="container mx-auto px-4 py-6 max-w-4xl">
-      {/* Go Back Button */}
-      <div className="mb-6">
-        <Link to="/admin/manage-products" className="inline-flex items-center text-gray-700 hover:text-gray-900 transition-colors">
-          <i className="fas fa-arrow-left mr-2"></i>
-          <span>Go Back</span>
+    <div className="insert-product-page">
+      <div style={{ marginBottom: 24 }}>
+        <Link to="/admin/manage-products" style={{ color: '#f97b7b', fontWeight: 700, textDecoration: 'none' }}>
+          ← Go Back
         </Link>
       </div>
       <h2>Add New Product</h2>
-       
-                
-              
       <form className="insert-product-form" onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="form-group">
-          <label htmlFor="product_name">Product Name</label>
-          <input
-            type="text"
-            id="product_name"
-            name="product_name"
-            value={productData.product_name}
-            onChange={handleChange}
-            required
-          />
+          <label>Product Name</label>
+          <input type="text" name="product_name" value={productData.product_name} onChange={handleChange} required />
         </div>
         <div className="form-group">
-          <label htmlFor="product_weight">Product Weight</label>
-          <input
-            type="text"
-            id="product_weight"
-            name="product_weight"
-            value={productData.product_weight}
-            onChange={handleChange}
-            required
-          />
+          <label>Product Weight</label>
+          <input type="text" name="product_weight" value={productData.product_weight} onChange={handleChange} required />
         </div>
         <div className="form-group">
-          <label htmlFor="product_description">Description</label>
-          <textarea
-            id="product_description"
-            name="product_description"
-            value={productData.product_description}
-            onChange={handleChange}
-            required
-          ></textarea>
+          <label>Description</label>
+          <textarea name="product_description" value={productData.product_description} onChange={handleChange} required rows={3} />
         </div>
         <div className="form-group">
-          <label htmlFor="product_price">Price ($)</label>
-          <input
-            type="number"
-            id="product_price"
-            name="product_price"
-            step="0.01"
-            value={productData.product_price}
-            onChange={handleChange}
-            required
-          />
+          <label>Price (Rs.)</label>
+          <input type="number" name="product_price" step="0.01" value={productData.product_price} onChange={handleChange} required />
         </div>
         <div className="form-group">
-          <label htmlFor="flavor">Flavors <span className="hint">(comma separated)</span></label>
-          <input
-            type="text"
-            id="flavor"
-            name="flavor"
-            value={productData.flavor}
-            onChange={handleChange}
-            placeholder="e.g. Chocolate, Vanilla"
-            required
-          />
+          <label>Flavors <span className="hint">(comma separated)</span></label>
+          <input type="text" name="flavor" value={productData.flavor} onChange={handleChange} placeholder="e.g. Chocolate, Vanilla" required />
         </div>
-       
         <div className="form-group">
-              <label htmlFor="occasion">Occasions</label>
-              <select
-                id="occasion"
-                name="occasion"
-                multiple
-                value={productData.occasion ? productData.occasion.split(",").map(s => s.trim()) : []}
-                onChange={e => {
-                  const selected = Array.from(e.target.selectedOptions, option => option.value);
-                  setProductData({ ...productData, occasion: selected.join(", ") });
-                }}
-                className="form-control"
-              >
-                {OCCASION_OPTIONS.map(option => (
-                  <option key={option} value={option}>{option}</option>
-                ))}
-              </select>
-              <small className="form-text text-muted">Hold Ctrl (Windows) or Cmd (Mac) to select multiple.</small>
-            </div>
-        
+          <label>Occasions</label>
+          <select name="occasion" multiple value={productData.occasion ? productData.occasion.split(",").map(s=>s.trim()) : []}
+            onChange={e => { const sel = Array.from(e.target.selectedOptions, o=>o.value); setProductData({...productData, occasion: sel.join(", ")}); }}>
+            {OCCASION_OPTIONS.map(o => <option key={o} value={o}>{o}</option>)}
+          </select>
+          <small style={{color:'#c08080',fontSize:'0.75rem'}}>Hold Ctrl / Cmd to select multiple</small>
+        </div>
         <div className="form-group">
-            <label htmlFor="specifications">Specifications</label>
-            <select
-              id="specifications"
-              name="specifications"
-              multiple
-              value={productData.specifications ? productData.specifications.split(",").map(s => s.trim()) : []}
-              onChange={e => {
-                const selected = Array.from(e.target.selectedOptions, option => option.value);
-                setProductData({ ...productData, specifications: selected.join(", ") });
-              }}
-              className="form-control"
-            >
-              {SPECIFICATION_OPTIONS.map(option => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-            <small className="form-text text-muted">Hold Ctrl (Windows) or Cmd (Mac) to select multiple.</small>
+          <label>Specifications</label>
+          <select name="specifications" multiple value={productData.specifications ? productData.specifications.split(",").map(s=>s.trim()) : []}
+            onChange={e => { const sel = Array.from(e.target.selectedOptions, o=>o.value); setProductData({...productData, specifications: sel.join(", ")}); }}>
+            {SPECIFICATION_OPTIONS.map(o => <option key={o} value={o}>{o}</option>)}
+          </select>
+        </div>
+        <div className="form-group">
+          <label>Image Source</label>
+          <div style={{ display:'flex', gap:20, marginTop:6 }}>
+            <label style={{ textTransform:'none', fontWeight:500, display:'flex', alignItems:'center', gap:6 }}>
+              <input type="radio" name="imageSource" value="upload" checked={productData.imageSource==="upload"} onChange={handleSourceChange} style={{width:'auto'}} /> Upload
+            </label>
+            <label style={{ textTransform:'none', fontWeight:500, display:'flex', alignItems:'center', gap:6 }}>
+              <input type="radio" name="imageSource" value="url" checked={productData.imageSource==="url"} onChange={handleSourceChange} style={{width:'auto'}} /> URL
+            </label>
           </div>
-        <div>
-          <label>
-            <input
-              type="radio"
-              name="imageSource"
-              value="upload"
-              checked={productData.imageSource === "upload"}
-              onChange={handleSourceChange}
-            />
-            Upload Image
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="imageSource"
-              value="url"
-              checked={productData.imageSource === "url"}
-              onChange={handleSourceChange}
-            />
-            Use Image URL
-          </label>
         </div>
         {productData.imageSource === "upload" ? (
-          <div>
-            <label htmlFor="product_image">Product Image:</label>
-            <input
-              type="file"
-              id="product_image"
-              name="product_image"
-              accept="image/*"
-              onChange={handleFileChange}
-              required
-            />
+          <div className="form-group">
+            <label>Product Image</label>
+            <input type="file" accept="image/*" onChange={handleFileChange} required />
           </div>
         ) : (
-          <div>
-            <label htmlFor="product_image_url">Image URL:</label>
-            <input
-              type="text"
-              id="product_image_url"
-              name="product_image_url"
-              value={productData.product_image_url}
-              onChange={handleChange}
-              required
-            />
+          <div className="form-group">
+            <label>Image URL</label>
+            <input type="text" name="product_image_url" value={productData.product_image_url} onChange={handleChange} required />
           </div>
         )}
         <div className="form-group">
           <label>Ingredients</label>
-          {ingredients.length === 0 ? (
-            <div>Loading ingredients...</div>
-          ) : (
-            ingredients.map((ingredient, index) => (
-              <div key={index} className="ingredient-row">
-                <input
-                  type="text"
-                  value={ingredient.name}
-                  readOnly
-                  style={{ width: '30%' }}
-                />
-                <input
-                  type="number"
-                  id={`ingredient_quantity_${index}`}
-                  name={`ingredient_quantity_${index}`}
-                  placeholder="Quantity"
-                  value={ingredient.quantity}
-                  onChange={(e) => handleIngredientChange(index, e.target.value)}
-                  min="0"
-                  step="any"
-                  required
-                  style={{ width: '30%' }}
-                />
-                <input
-                  type="text"
-                  value={ingredient.unit}
-                  readOnly
-                  style={{ width: '30%' }}
-                />
-              </div>
-            ))
-          )}
+          {ingredients.length === 0 ? <div>Loading…</div> : ingredients.map((ing, i) => (
+            <div key={i} className="ingredient-row">
+              <input type="text" value={ing.name} readOnly style={{ flex:2 }} />
+              <input type="number" placeholder="Qty" value={ing.quantity} onChange={e=>handleIngredientChange(i,e.target.value)} min="0" step="any" style={{ flex:1 }} />
+              <input type="text" value={ing.unit} readOnly style={{ flex:1 }} />
+            </div>
+          ))}
         </div>
         <button type="submit" className="submit-btn">Add Product</button>
         {success && <div className="success-msg">{success}</div>}
-        {error && <div className="error-msg">{error}</div>}
+        {error   && <div className="error-msg">{error}</div>}
       </form>
     </div>
   );

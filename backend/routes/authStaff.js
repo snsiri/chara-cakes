@@ -3,6 +3,7 @@ import Staff from '../models/Staff.js';
 import multer from 'multer';
 import path from 'path';
 import jwt from 'jsonwebtoken';
+import role from '../models/Role.js';
 import { Protect } from '../middleware/authStaff.js';
 import { adminOnly,requireRole, firstLvlAdmin ,attachStaffRole} from "../middleware/authorization.js";
 import generateToken from "../utils/generateToken.js";

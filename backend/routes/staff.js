@@ -1,5 +1,6 @@
 import express from 'express';
 import Staff from '../models/Staff.js';
+import Role from '../models/Role.js'; 
 import getNextSequenceValue from '../utils/sequence.js';
 const prefix="STAFF-";
 import multer from 'multer';
@@ -7,9 +8,9 @@ import path from 'path';
 import { Protect } from '../middleware/authStaff.js';
 import { adminOnly, firstLvlAdmin ,attachStaffRole} from "../middleware/authorization.js";
 import { changeRole } from '../controller/roleController.js';
+import mongoose from 'mongoose';
 
 const router = express.Router();
-
 
 //ADMIN-----
 
