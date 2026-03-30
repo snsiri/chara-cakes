@@ -70,13 +70,13 @@ const startServer = async () => {
   try {
     // Relying on your external config/db.js to handle mongoose.connect()
     await dbConnection(); 
-    console.log("✅ Database Setup Finished.");
+    console.log("Database Setup Finished.");
 
     app.listen(PORT, () => {
-      console.log(`🚀 API Gateway running on port ${PORT}`);
+      console.log(`API Gateway running on port ${PORT}`);
     });
   } catch (error) {
-    console.error("❌ App failed to boot:", error.message);
+    console.error("App failed to boot:", error.message);
     process.exit(1);
   }
 };
