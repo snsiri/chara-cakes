@@ -178,7 +178,7 @@ const Cart = () => {
                         <button disabled={loading} onClick={() => handleQuantityChange('customize', item._id, 'decrease')}>−</button>
                         <span>{item.quantity}</span>
                         <button disabled={loading} onClick={() => handleQuantityChange('customize', item._id, 'increase')}>+</button>
-                        {/* <button className="remove-btn" disabled={loading} onClick={() => handleRemove('customize', item._id)}>Remove</button> */}
+                        <button className="remove-btn" disabled={loading} onClick={() => handleRemove('customize', item._id)}>Remove</button> 
                       </div>
                     </div>
                   </div>
