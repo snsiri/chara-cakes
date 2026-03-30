@@ -14,6 +14,140 @@ Chara Cakes is a comprehensive digital platform built for a made-to-order bakery
 
 ### Designed to reflect real-world business workflows, not just a basic CRUD app.
 
+## Tech Stack
+
+| Layer        | Technology                                      |
+|--------------|-------------------------------------------------|
+| Frontend     | React 18, React Router v6, Bootstrap 5          |
+| Styling      | Custom CSS (Quicksand + Playfair Display fonts), Bootstrap |
+| HTTP Client  | Axios (with JWT interceptor)                    |
+| Backend      | Node.js, Express.js                             |
+| Database     | MongoDB Atlas (Mongoose ODM)                    |
+| Auth         | JWT (JSON Web Tokens), bcryptjs                 |
+| File Uploads | Multer (local disk storage)                     |
+| Carousel     | react-slick                                     |
+
+---
+
+## Project Structure
+
+```
+project/
+│
+├── src/
+│   ├── components/
+│   │   ├── Navbar.jsx / Navbar.css
+│   │   ├── Footer.jsx / Footer.css
+│   │   ├── Home.jsx / Home.css
+│   │   ├── Cakes.jsx / Cake_list.css
+│   │   ├── Cake_cards.jsx
+│   │   ├── CakeDetails.jsx / CakeDetails.css
+│   │   ├── Cart.jsx / Cart.css
+│   │   ├── CustomizeItem.jsx / CustomizeItem.css
+│   │   ├── Search.jsx / Search.css
+│   │   ├── AboutUs.jsx
+│   │   ├── ContactUs.jsx
+│   │   │
+│   │   ├── CustomerLogin.jsx
+│   │   ├── CustomerRegistration.jsx
+│   │   ├── CustomerProfile.jsx / CustomerProfile.css
+│   │   ├── CustomerSidebar.jsx / CustomerSidebar.css
+│   │   │
+│   │   ├── StaffLogin.jsx
+│   │   ├── AdminDashboard.jsx
+│   │   ├── AdminSidebar.jsx
+│   │   ├── ProductManagerPage.jsx
+│   │   ├── InsertProduct.jsx
+│   │   ├── OrderTable.jsx
+│   │   ├── CompletedOrdersPage.jsx
+│   │   ├── CustomizeDetails.jsx
+│   │   ├── ViewCustomize.jsx
+│   │   ├── DiscontinuedProducts.jsx
+│   │   ├── InsertOption.jsx
+│   │   └── UpdateOption.jsx
+│   │
+│   ├── api/axios.js              # Axios instance with JWT interceptor
+│   ├── App.jsx                   # Root router
+│   ├── App.css
+│   ├── main.jsx
+│   └── index.css
+│
+├── models/
+│   ├── Customer.js
+│   ├── Staff.js
+│   ├── Role.js
+│   ├── Product.js
+│   ├── Order.js
+│   ├── Completed_order.js
+│   ├── Cart.js
+│   ├── Customize.js
+│   ├── Option.js
+│   ├── Feedback.js
+│   ├── IngredientStock.js
+│   ├── discontinued_product.js
+│   └── Counter.js
+│
+├── routes/
+│   ├── authCustomer.js           # Customer register/login/me
+│   ├── authStaff.js              # Staff login/me
+│   ├── products.js
+│   ├── orders.js
+│   ├── cart.js
+│   ├── customizes.js
+│   ├── options.js
+│   ├── feedback.js
+│   ├── ingredientsStock.js
+│   ├── discontinued_products.js
+│   ├── completed_orders.js
+│   ├── staff.js
+│   └── role.js
+│
+├── middleware/
+│   ├── authCustomer.js           # Customer JWT protect
+│   ├── authStaff.js              # Staff JWT protect
+│   └── authorization.js          # Role-based guards
+│
+├── utils/
+│   ├── sequence.js               # 4-digit ID generator (e.g. OPT-0001)
+│   ├── sequences.js              # 10-digit ID generator (e.g. CUS-0000000001)
+│   └── generateToken.js
+│
+└── db.js                         # MongoDB Atlas connection
+```
+## Database Models
+
+| Model               | Key Fields                                                                 |
+|---------------------|----------------------------------------------------------------------------|
+| `Customer`          | `_id`, `name`, `email`, `password`, `phone`, `address`                    |
+| `Staff`             | `_id`, `name`, `email`, `password`, `roles[]` (with history)              |
+| `Role`              | `name` (baker/manager/admin/delivery staff/firstlevelAdmin), `permissions` |
+| `Product`           | `_id`, `product_name`, `product_price`, `product_category`, `ingredients[]` |
+| `Order`             | `_id`, `customer_id`, `product[]`, `customize[]`, `deliveryAddress`, `totalPrice` |
+| `Completed_Order`   | Same as Order + `deliveredAt`                                              |
+| `Cart`              | `_id`, `customer_id`, `product[]`, `customize[]`                          |
+| `Customize`         | `_id`, `custom_layers`, `custom_size`, `custom_shape`, `custom_bases[]`, `custom_filling[]`, `custom_frosting`, `custom_decorations`, `custom_price` |
+| `Option`            | `_id`, `option_name`, `option_flavor`, `option_size`, `option_shape`, `option_price`, `ingredients[]` |
+| `Feedback`          | `_id`, `customer_id`, `order_id`, `product_id`, `rating`, `feedback_text` |
+| `IngredientStock`   | `_id`, `name`, `stock_quantity`, `unit`                                   |
+| `Discontinued_Product` | Mirror of Product fields + `deletedAt`                                 |
+| `Counter`           | Auto-increment sequence tracking per entity type                          |
+
+### ID Format
+
+All IDs use auto-incremented prefixed sequences:
+
+| Entity       | Format          | Example              |
+|--------------|-----------------|----------------------|
+| Customer     | `CUS-` + 10 digits | `CUS-0000000001`  |
+| Order        | `ORD-` + 10 digits | `ORD-0000000001`  |
+| Product      | `OGC-` + 4 digits  | `OGC-0001`        |
+| Customize    | `CSM-` + 4 digits  | `CSM-0001`        |
+| Option       | `OPT-` + 4 digits  | `OPT-0001`        |
+| Ingredient   | `ING-` + 4 digits  | `ING-0001`        |
+| Staff        | `STAFF-` + 4 digits | `STAFF-0001`     |
+| Feedback     | `FB-` + 10 digits  | `FB-0000000001`   |
+
+---
 
 ## Key Features
 
@@ -85,13 +219,14 @@ Separation of active vs completed orders for performance
 
 ## Getting Started
 
-#3# Backend
-npm install
-npx nodemon server.js
+### Backend
+cd backend                                                                                                                                                         
+npm install                                                                                                                                                        
+npm start
 
 ### Frontend
-cd client
-npm install
+cd frontend/ui                                                                                                                                                     
+npm install                                                                                                                                                        
 npm run dev
 
 ## Environment Variables
