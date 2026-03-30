@@ -22,18 +22,15 @@
 }
 
 /* ── Brand ── */
-.navbar-brand {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: #c85050 !important;
-  text-decoration: none !important;
-  letter-spacing: 0.01em;
-  margin-right: 36px;
-  flex-shrink: 0;
-  transition: color 0.2s;
-}
+.navbar-brand { 
+  font-family: "Caveat", sans-serif; 
+  font-style: italic; 
+  font-size: 1.8rem !important; 
+  font-weight: 1000; 
+  color: #C85050 !important; 
+  text-decoration: none !important; 
+  letter-spacing: 0.01em; 
+  margin-right: 36px; }
 .navbar-brand:hover { color: #9b2020 !important; }
 
 /* ── Nav links ── */

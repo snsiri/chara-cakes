@@ -9,7 +9,9 @@ const Footer = () => {
         {/* Company Info */}
         <div className="footer-section">
           <div className="company-info">
-            <img src="/images/logo.png" alt="Chara Cakes Logo" className="footer-logo" />
+            <Link className="footer-brand" to="/">
+              Chara Cakes
+            </Link>
             <div className="company-details">
               <p>Chara Cakes (Pvt) Ltd,</p>
               <p>24/A, Vajira Road,</p>

@@ -184,6 +184,9 @@ import CustomerLogin from './components/CustomerLogin';
 import CustomerRegister from './components/CustomerRegistration';
 import NotFound from './components/NotFound';
 import CustomerProfile from './components/CustomerProfile';
+import AboutUs from './components/Aboutus';
+import ContactUs from './components/Contactus';
+import Footer from './components/Footer';
 
 // Staff components
 import StaffLogin from './components/StaffLogin';
@@ -218,8 +221,10 @@ const AppLayout = ({ customer, setCustomer, staff, setStaff }) => {
           <Route path="/register" element={customer ? <Navigate to="/login" /> : <CustomerRegister setCustomer={setCustomer} />} />
           <Route path="/cakes" element={<Cakes />} />
           <Route path="/cakes/:id" element={<CakeDetails />} />
-          <Route path="/customizes" element={<CustomizeItem />} />
+          <Route path="/customizes" element={customer ? <CustomizeItem /> : <Navigate to="/login" />} />          
           <Route path="/search" element={<Search />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/contact" element={<ContactUs />} />
 
           {/* ══ PROTECTED CUSTOMER ROUTES ══ */}
           <Route path="/cart" element={
@@ -271,7 +276,9 @@ const AppLayout = ({ customer, setCustomer, staff, setStaff }) => {
 
           <Route path="*" element={<NotFound />} />
         </Routes>
+
       </main>
+      <Footer/>
     </div>
   );
 };

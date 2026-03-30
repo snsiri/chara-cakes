@@ -126,7 +126,82 @@ router.post('/login', async (req, res) => {
 });
 
 //Update Details
+router.put('/update', Protect, async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.customer._id);
+    if (!customer)
+      return res.status(404).json({ message: 'Customer not found' });
 
+    const { name, email, phone, address, birthdate, gender } = req.body;
+
+    // If email is being changed, make sure it's not taken by another account
+    if (email && email !== customer.email) {
+      const emailExists = await Customer.findOne({ email });
+      if (emailExists)
+        return res.status(400).json({ message: 'Email is already in use by another account.' });
+      customer.email = email;
+    }
+
+    if (name)      customer.name      = name;
+    if (phone)     customer.phone     = phone;
+    if (address)   customer.address   = address;
+    if (birthdate) customer.birthdate = birthdate;
+    if (gender)    customer.gender    = gender;
+
+    customer.last_updated_At = new Date();
+    await customer.save();
+
+    res.status(200).json({
+      message: 'Profile updated successfully.',
+      customer: {
+        _id:       customer._id,
+        name:      customer.name,
+        email:     customer.email,
+        phone:     customer.phone,
+        address:   customer.address,
+        birthdate: customer.birthdate,
+        gender:    customer.gender
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+
+//update password  (protected)
+
+router.put('/update-password', Protect, async (req, res) => {
+  try {
+    const { currentPassword, newPassword, confirmNewPassword } = req.body;
+
+    if (!currentPassword || !newPassword || !confirmNewPassword)
+      return res.status(400).json({ message: 'Please provide all password fields.' });
+
+    if (newPassword !== confirmNewPassword)
+      return res.status(400).json({ message: 'New passwords do not match.' });
+
+    if (newPassword.length < 8)
+      return res.status(400).json({ message: 'New password must be at least 8 characters long.' });
+
+    // Need to fetch with password for comparison
+    const customer = await Customer.findById(req.customer._id).select('+password');
+    if (!customer)
+      return res.status(404).json({ message: 'Customer not found' });
+
+    const isMatch = await customer.matchPassword(currentPassword);
+    if (!isMatch)
+      return res.status(401).json({ message: 'Current password is incorrect.' });
+
+    customer.password = newPassword; // pre-save hook will hash it
+    customer.last_updated_At = new Date();
+    await customer.save();
+
+    res.status(200).json({ message: 'Password updated successfully.' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
 //Me
 router.get('/me', Protect, async (req, res) => {
     try {

@@ -22,20 +22,16 @@
 
 .company-info { max-width: 300px; }
 
-.footer-logo {
-  height: 44px;
-  margin-bottom: 18px;
-  display: block;
-}
-
 /* Brand text fallback if logo missing */
-.footer-brand-text {
-  font-family: 'Playfair Display', serif;
+.footer-brand {
+  font-family: "Caveat", sans-serif;
   font-style: italic;
-  font-size: 1.5rem;
-  color: #c85050;
-  margin-bottom: 16px;
-  display: block;
+  font-size: 2rem;
+  font-weight: 1000;
+  color:#C85050 !important;
+  text-decoration: none !important;
+  letter-spacing: 0.01em;
+  margin-right: 36px;
 }
 
 .company-details {

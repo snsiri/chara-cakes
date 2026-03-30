@@ -92,12 +92,7 @@ const Cart = () => {
   return (
     <div className="cart-page-bg">
       <div className="cart-container">
-        {/* Breadcrumb */}
-        <div className="cart-header">
-          <Link to="/" className="breadcrumb">Home</Link>
-          <span className="breadcrumb-separator">›</span>
-          <span className="current-page">Cart</span>
-        </div>
+      
 
         <h1 className="cart-page-title">Your Cart</h1>
 
@@ -144,10 +139,10 @@ const Cart = () => {
                         <div className="multi-price">Rs. {(Number(item.product_price) * item.quantity).toFixed(2)}</div>
                       </div>
                       <div className="quantity-selector">
-                        <button disabled={loading} onClick={() => handleQuantityChange('product', item._id, 'decrease')}>−</button>
+                        <button className="quantity-btn" disabled={loading} onClick={() => handleQuantityChange('product', item._id, 'decrease')}>−</button>
                         <span>{item.quantity}</span>
-                        <button disabled={loading} onClick={() => handleQuantityChange('product', item._id, 'increase')}>+</button>
-                        <button className="remove-btn" disabled={loading} onClick={() => handleRemove('product', item._id)}>Remove</button>
+                        <button className="quantity-btn" disabled={loading} onClick={() => handleQuantityChange('product', item._id, 'increase')}>+</button>
+                        <button className="remove-btn" disabled={loading} onClick={() => handleRemove('product', item._id)}> Remove </button>
                       </div>
                     </div>
                   </div>
@@ -183,7 +178,7 @@ const Cart = () => {
                         <button disabled={loading} onClick={() => handleQuantityChange('customize', item._id, 'decrease')}>−</button>
                         <span>{item.quantity}</span>
                         <button disabled={loading} onClick={() => handleQuantityChange('customize', item._id, 'increase')}>+</button>
-                        <button className="remove-btn" disabled={loading} onClick={() => handleRemove('customize', item._id)}>Remove</button>
+                        {/* <button className="remove-btn" disabled={loading} onClick={() => handleRemove('customize', item._id)}>Remove</button> */}
                       </div>
                     </div>
                   </div>
