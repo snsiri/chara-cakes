@@ -104,7 +104,8 @@ PORT=3000
 <img width="1060" height="2655" alt="localhost_5173_customizes" src="https://github.com/user-attachments/assets/89736f22-882d-4c04-98c7-320cc03247ac" />
 <img width="1060" height="2376" alt="localhost_5173_cakes" src="https://github.com/user-attachments/assets/ef808f85-f5b7-4651-b054-b68a6067eead" />
 <img width="1060" height="2263" alt="localhost_5173_customerProfile" src="https://github.com/user-attachments/assets/f8be9149-3e9c-4c97-8b70-2ee314811e75" />
-<img width="1060" height="2241" alt="localhost_5173_cart" src="https://github.com/user-attachments/assets/4371e6e5-f695-4350-8aed-fec6277d6a61" />
+<img width="1060" height="2241" alt="localhost_5173_cart (1)" src="https://github.com/user-attachments/assets/790a0881-8278-4377-aa73-109850719a8b" />
+
 
 
 Home Page
