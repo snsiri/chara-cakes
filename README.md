@@ -7,9 +7,9 @@ A production-style full-stack web application simulating a real-world artisan ba
 Chara Cakes is a comprehensive digital platform built for a made-to-order bakery. It integrates:
 
 -Customer shopping experience.                                                                                                                                 
--Custom cake builder.
--Order lifecycle management.
--Inventory tracking.
+-Custom cake builder.                                                                                                                                              
+-Order lifecycle management.                                                                                                                                       
+-Inventory tracking.                                                                                                                                               
 -Role-based staff system.
 
 ### Designed to reflect real-world business workflows, not just a basic CRUD app.
@@ -103,10 +103,10 @@ PORT=3000
 ## Screenshots
 
 ### Home Page
-<img width="1060" height="43034" alt="localhost_5173_ (1)" src="https://github.com/user-attachments/assets/4f1686ce-20ec-40f4-8b4f-29457e55311a" />
+<img width="1060" height="44000" alt="localhost_5173_ (1)" src="https://github.com/user-attachments/assets/4f1686ce-20ec-40f4-8b4f-29457e55311a" />
 
 ### Cake Customizing Page
-<img width="1060" height="2655" alt="localhost_5173_customizes" src="https://github.com/user-attachments/assets/89736f22-882d-4c04-98c7-320cc03247ac" />
+<img width="1060" height="2700" alt="localhost_5173_customizes" src="https://github.com/user-attachments/assets/89736f22-882d-4c04-98c7-320cc03247ac" />
 
 ### Cakes Page
 <img width="1060" height="2376" alt="localhost_5173_cakes" src="https://github.com/user-attachments/assets/ef808f85-f5b7-4651-b054-b68a6067eead" />
@@ -132,7 +132,7 @@ This project is developed for educational and portfolio purposes.
 
 ## Author
 
-Nimsari Sirisooriya
+Nimsari Sirisooriya                                                                                                                                                
 BSc (Hons) in Information Technology
 
 
