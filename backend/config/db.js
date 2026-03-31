@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const dburl = "mongodb+srv://nsirisooriya:143myr00m@cluster0.9kqrd.mongodb.net/product_db?retryWrites=true&w=majority&appName=Cluster0";
+const dburl = "mongodb_url";
 
 // Only set strictQuery if you want strict query mode
 mongoose.set("strictQuery", true);
